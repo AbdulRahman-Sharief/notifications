@@ -28,18 +28,7 @@ module.exports.create = async (req, res, next) => {
   const notification = await Notification.create({
     text: req.body.text,
   });
-  // console.log(notification);
-  // let resData = notification;
-  // console.log(
-  //   new Date(
-  //     notification.createdAt.setHours(notification.createdAt.getHours() + 3)
-  //   )
-  // );
-  // resData.createdAt.setHours(notification.createdAt.getHours() + 3);
-  // resData.updatedAt = new Date(
-  //   notification.updatedAt.setHours(notification.updatedAt.getHours() + 3)
-  // );
-  // console.log(resData);
+
   res.status(200).json({
     status: "success",
     message: "created",
