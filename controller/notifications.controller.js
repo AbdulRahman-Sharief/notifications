@@ -8,7 +8,7 @@ module.exports.getAll = async (req, res, next) => {
     model: Notification,
     query: { deleted: { $ne: true } },
   });
-  console.log(allNotifications);
+  // console.log(allNotifications);
   res.status(200).json({
     status: "success",
     data: allNotifications,
@@ -44,6 +44,12 @@ module.exports.create = async (req, res, next) => {
     status: "success",
     message: "created",
     data: notification,
+    createdAt: new Date(
+      notification.createdAt.setHours(notification.createdAt.getHours() + 3)
+    ),
+    updatedAt: new Date(
+      notification.updatedAt.setHours(notification.updatedAt.getHours() + 3)
+    ),
   });
 };
 

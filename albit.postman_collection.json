@@ -1,0 +1,2472 @@
+{
+	"info": {
+		"_postman_id": "6b5ee72a-434c-4299-a6e9-c410aa700825",
+		"name": "albit",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22527885"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "login",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check if response exists and is in JSON format\r",
+											"if (pm.response && pm.response.json) {\r",
+											"   const responseBody = pm.response.json();\r",
+											"\r",
+											"    // Extract token from response body\r",
+											"    const token = responseBody.login.jwt;\r",
+											"\r",
+											"    // Set token in environment variable\r",
+											"    pm.environment.set(\"token\", token);\r",
+											"} else {\r",
+											"    console.error(\"Unable to extract token from response.\");\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userlogin\": \"mostafa@gmail.com\",\r\n    \"password\": \"mostafabriek\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{collectionSchemaUrl}}auth/admin/login.php",
+									"host": [
+										"{{collectionSchemaUrl}}auth"
+									],
+									"path": [
+										"admin",
+										"login.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "signup",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\": \"ahmed\",\r\n    \"lastname\": \"hashem\",\r\n    \"email\": \"ceo@alexmegasoft.com\",\r\n    \"phone\": \"\",\r\n    \"password\": \"ahmed\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{collectionSchemaUrl}}/auth/admin/signup.php",
+									"host": [
+										"{{collectionSchemaUrl}}"
+									],
+									"path": [
+										"auth",
+										"admin",
+										"signup.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"addressid\" : 1 ,\r\n    \"countryid\" : 1 ,\r\n    \"governmentid\" : 1 ,\r\n    \"address1\" : \"1 sss sssss ss \" ,\r\n    \"address2\" : \"sd sdsdsd dsa\" ,\r\n    \"lat\" : \"31.55\" ,\r\n    \"long\" : \"29.5894\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{collectionSchemaUrl}}auth/admin/profile.php?view",
+									"host": [
+										"{{collectionSchemaUrl}}auth"
+									],
+									"path": [
+										"admin",
+										"profile.php"
+									],
+									"query": [
+										{
+											"key": "view",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{collectionSchemaUrl}}auth/admin/profile.php?logout",
+									"host": [
+										"{{collectionSchemaUrl}}auth"
+									],
+									"path": [
+										"admin",
+										"profile.php"
+									],
+									"query": [
+										{
+											"key": "logout",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "add category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"namear\": \"mostafa@gmail.com\",\r\n    \"nameen\": \"mostafabriek\",\r\n    \"discriptionar\": \"mostafabriek\",\r\n    \"discriptionen\": \"mostafabriek\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}inputs/addCategory.php",
+							"host": [
+								"{{collectionSchemaUrl}}inputs"
+							],
+							"path": [
+								"addCategory.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add sup category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"namear\": \"mostafa@gmail.com\",\r\n    \"nameen\": \"mostafabriek\",\r\n    \"discriptionar\": \"mostafabriek\",\r\n    \"discriptionen\": \"mostafabriek\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}inputs/addSupCategory.php",
+							"host": [
+								"{{collectionSchemaUrl}}inputs"
+							],
+							"path": [
+								"addSupCategory.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"namear\" : \"مانجا\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}inputs/product.php?edit=1",
+							"host": [
+								"{{collectionSchemaUrl}}inputs"
+							],
+							"path": [
+								"product.php"
+							],
+							"query": [
+								{
+									"key": "edit",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/admin/orders.php?inprogress&pastorders",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"admin",
+								"orders.php"
+							],
+							"query": [
+								{
+									"key": "viewall",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "cart",
+									"value": "19",
+									"disabled": true
+								},
+								{
+									"key": "cartstate",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "approve",
+									"value": "19",
+									"disabled": true
+								},
+								{
+									"key": "delivered",
+									"value": "19",
+									"disabled": true
+								},
+								{
+									"key": "summery",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "storeid",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "inprogress",
+									"value": null
+								},
+								{
+									"key": "pastorders",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "stores",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"addressid\" : 1 ,\r\n    \"countryid\" : 1 ,\r\n    \"governmentid\" : 1 ,\r\n    \"address1\" : \"1 sss sssss ss \" ,\r\n    \"address2\" : \"sd sdsdsd dsa\" ,\r\n    \"lat\" : \"31.55\" ,\r\n    \"long\" : \"29.5894\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/admin/stores.php?view",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"admin",
+								"stores.php"
+							],
+							"query": [
+								{
+									"key": "view",
+									"value": null
+								},
+								{
+									"key": "viewall",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "namear",
+									"value": "ar",
+									"type": "text"
+								},
+								{
+									"key": "nameen",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "discriptionar",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "discriptionen",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "categoryid",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "subcategoryid",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/admin/product.php?add=",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"admin",
+								"product.php"
+							],
+							"query": [
+								{
+									"key": "view",
+									"value": "4",
+									"disabled": true
+								},
+								{
+									"key": "viewall",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "delete",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "return",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "add",
+									"value": ""
+								},
+								{
+									"key": "edit",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "banars",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "titel",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "head",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/admin/banars.php?add",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"admin",
+								"banars.php"
+							],
+							"query": [
+								{
+									"key": "view",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "add",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "titel",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "head",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/admin/users.php?view=13",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"admin",
+								"users.php"
+							],
+							"query": [
+								{
+									"key": "view",
+									"value": "13"
+								},
+								{
+									"key": "viewall",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "titel",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "head",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/admin/search?t=البيت",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"admin",
+								"search"
+							],
+							"query": [
+								{
+									"key": "t",
+									"value": "البيت"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sub product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "namear",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "nameen",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "discriptionar",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "discriptionen",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "153.20",
+									"type": "text"
+								},
+								{
+									"key": "productid",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/admin/product.php?returnsubproduct=1",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"admin",
+								"product.php"
+							],
+							"query": [
+								{
+									"key": "view",
+									"value": "4",
+									"disabled": true
+								},
+								{
+									"key": "viewall",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "deletesubproduct",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "returnsubproduct",
+									"value": "1"
+								},
+								{
+									"key": "addsubproduct",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "editsubproduct",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "this api folder for admin"
+		},
+		{
+			"name": "client",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check if response exists and is in JSON format\r",
+											"if (pm.response && pm.response.json) {\r",
+											"   const responseBody = pm.response.json();\r",
+											"\r",
+											"    // Extract token from response body\r",
+											"    const clienttoken = responseBody.login.jwt;\r",
+											"\r",
+											"    // Set token in environment variable\r",
+											"    pm.environment.set(\"clienttoken\", clienttoken);\r",
+											"} else {\r",
+											"    console.error(\"Unable to extract token from response.\");\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userlogin\": \"01111178289\",\r\n    \"password\": \"mostafabriek\",\r\n    \"fcmtoken\": \"ooj\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{collectionSchemaUrl}}auth/client/login.php",
+									"host": [
+										"{{collectionSchemaUrl}}auth"
+									],
+									"path": [
+										"client",
+										"login.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "signup",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\": \"Mostafa\",\r\n    \"lastname\": \"test\",\r\n    \"email\": \"mostafabriek3@gmail.com\",\r\n    \"phone\": \"0111111111\",\r\n    \"password\": \"789456123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{collectionSchemaUrl}}auth/client/signup.php",
+									"host": [
+										"{{collectionSchemaUrl}}auth"
+									],
+									"path": [
+										"client",
+										"signup.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{clienttoken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fcmtoken\" : \"fcLuHfkXSImOTdbjAn6KUl:APA91bGix8nyLEl6UXq1P3HrWaAmN3Csc49D_EYP6RgcVnkORFWN9cJcWiTnPrOBxpeFDyl5nwmMtQqsN_gbcJjqALa3FQz7K8P80GGWi6VvaIBuPKGgI6Bs_h8kPtCjcxtUih2Kn0ZO\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{collectionSchemaUrl}}auth/client/profile.php?logout",
+									"host": [
+										"{{collectionSchemaUrl}}auth"
+									],
+									"path": [
+										"client",
+										"profile.php"
+									],
+									"query": [
+										{
+											"key": "logout",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{clienttoken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"addressid\" : 1 ,\r\n    \"countryid\" : 1 ,\r\n    \"governmentid\" : 1 ,\r\n    \"address1\" : \"1 sss sssss ss \" ,\r\n    \"address2\" : \"sd sdsdsd dsa\" ,\r\n    \"lat\" : \"31.55\" ,\r\n    \"long\" : \"29.5894\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{collectionSchemaUrl}}auth/client/profile.php?view",
+									"host": [
+										"{{collectionSchemaUrl}}auth"
+									],
+									"path": [
+										"client",
+										"profile.php"
+									],
+									"query": [
+										{
+											"key": "view",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edit profile data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{clienttoken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "WoKQ6qPU5/check.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{collectionSchemaUrl}}auth/client/profile.php?edit",
+									"host": [
+										"{{collectionSchemaUrl}}auth"
+									],
+									"path": [
+										"client",
+										"profile.php"
+									],
+									"query": [
+										{
+											"key": "edit",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change password",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{clienttoken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    // \"firstname\" : \"mostafa\" ,\r\n    // \"lastname\" : \"briek\" ,\r\n    // \"phone\" : \"01123578062\" ,\r\n    // \"email\" : \"mostafa@mostaf2a.com\"\r\n    \"oldpassword\" : \"mostafabriek1\" ,\r\n    \"password\" : \"mostafabriek\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{collectionSchemaUrl}}auth/client/profile.php?edit",
+									"host": [
+										"{{collectionSchemaUrl}}auth"
+									],
+									"path": [
+										"client",
+										"profile.php"
+									],
+									"query": [
+										{
+											"key": "edit",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{clienttoken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"countryid\" : 10 ,\r\n    \"governmentid\" : 1 ,\r\n    \"address1\" : \"1 sss ss ss \" ,\r\n    \"address2\" : \"sd sdsdsd dsa\" ,\r\n    \"address3\" : \"sd sdsdsd dsa\" ,\r\n    \"lat\" : \"31.55\" ,\r\n    \"long\" : \"29.5894\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{collectionSchemaUrl}}auth/client/profile.php?addaddress",
+									"host": [
+										"{{collectionSchemaUrl}}auth"
+									],
+									"path": [
+										"client",
+										"profile.php"
+									],
+									"query": [
+										{
+											"key": "addaddress",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edit address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{clienttoken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"addressid\" : 5,\r\n    \"countryid\" : 1 ,\r\n    \"governmentid\" : 1 ,\r\n    \"address1\" : \"1 sss ssss ss \" ,\r\n    \"address2\" : \"sd sdsdsd dsa\" ,\r\n    \"address3\" : \"sd sdsdsd dsa\" ,\r\n    \"lat\" : \"31.55\" ,\r\n    \"long\" : \"29.5894\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{collectionSchemaUrl}}auth/client/profile.php?editaddress",
+									"host": [
+										"{{collectionSchemaUrl}}auth"
+									],
+									"path": [
+										"client",
+										"profile.php"
+									],
+									"query": [
+										{
+											"key": "editaddress",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{clienttoken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"addressid\" : 13\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{collectionSchemaUrl}}auth/client/profile.php?deleteaddress",
+									"host": [
+										"{{collectionSchemaUrl}}auth"
+									],
+									"path": [
+										"client",
+										"profile.php"
+									],
+									"query": [
+										{
+											"key": "deleteaddress",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "wishlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{clienttoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"productid\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/client/wishlist.php?action=",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"client",
+								"wishlist.php"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": ""
+								},
+								{
+									"key": "view",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{clienttoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productid\": 1,\r\n    \"subproducts\": [{\"id\" : 1 , \"quantity\" : 1 }, { \"id\" : 2 , \"quantity\" : 1 } ] ,\r\n    \"quantity\" : 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/client/cart?add",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"client",
+								"cart"
+							],
+							"query": [
+								{
+									"key": "view",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "add",
+									"value": null
+								},
+								{
+									"key": "carts",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "cart",
+									"value": "54",
+									"disabled": true
+								},
+								{
+									"key": "cartstate",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "inprogress",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "pastorders",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cheackout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{clienttoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"addressid\" : 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/client/cart.php?cheackout=",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"client",
+								"cart.php"
+							],
+							"query": [
+								{
+									"key": "cheackout",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create link to pay",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{clienttoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"addressid\" : 6,\r\n    \"language\" : \"ar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/client/cart.php?pay",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"client",
+								"cart.php"
+							],
+							"query": [
+								{
+									"key": "pay",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{clienttoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/client/cart.php?cancel=5013",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"client",
+								"cart.php"
+							],
+							"query": [
+								{
+									"key": "cancel",
+									"value": "5013"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "stores",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"latitude\": 30.4297295750316,\r\n    // \"longitude\": 29.200249979701653\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/client/stores.php?view=1",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"client",
+								"stores.php"
+							],
+							"query": [
+								{
+									"key": "view",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "banners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/client/banners.php?home",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"client",
+								"banners.php"
+							],
+							"query": [
+								{
+									"key": "home",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "countries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/client/countries.php",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"client",
+								"countries.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/client/cities.php?country=1",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"client",
+								"cities.php"
+							],
+							"query": [
+								{
+									"key": "country",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get categories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}get/categories.php?categoryid=2",
+							"host": [
+								"{{collectionSchemaUrl}}get"
+							],
+							"path": [
+								"categories.php"
+							],
+							"query": [
+								{
+									"key": "categoryid",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get sup categories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}get/supcategories.php?subcategoryid=1",
+							"host": [
+								"{{collectionSchemaUrl}}get"
+							],
+							"path": [
+								"supcategories.php"
+							],
+							"query": [
+								{
+									"key": "subcategoryid",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTMsImZpcnN0bmFtZSI6Ik1vc3RhZmEiLCJsYXN0bmFtZSI6ImJyaWVrIiwidXNlcm5hbWUiOiIxNzA5MDY0MTYzMjU5NTMzNzE2IiwicGhvbmUiOiIwMTExMTE3ODI4OSIsImVtYWlsIjoibW9zdGFmYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiIsImltYWdlIjoiZGVmYXVsdC5qcGciLCJ0b2tlbiI6IiIsInRva2VuX2V4IjpudWxsLCJudW1iZXJfb2Zfb3JkZXJzIjowLCJmaXJlYmFzZVRva2VuIjoiIn0.R3vzGLArmOoYMidinZjkuNv2Gh7MV5tSgHdkkT2KW94",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{collectionSchemaUrl}}get/products.php?categoryid=2&storeid=2",
+							"host": [
+								"{{collectionSchemaUrl}}get"
+							],
+							"path": [
+								"products.php"
+							],
+							"query": [
+								{
+									"key": "categoryid",
+									"value": "2"
+								},
+								{
+									"key": "subcategoryid",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "supplierid",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "storeid",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{collectionSchemaUrl}}get/product.php?productid=2",
+							"host": [
+								"{{collectionSchemaUrl}}get"
+							],
+							"path": [
+								"product.php"
+							],
+							"query": [
+								{
+									"key": "productid",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "titel",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "head",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/client/search?t=البيت",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"client",
+								"search"
+							],
+							"query": [
+								{
+									"key": "t",
+									"value": "البيت"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FCM",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "key=AAAA-rpWiB0:APA91bGwcjL5H39w1TFVvd7qbPz48c5R3y6M7Kq7ncWcn738nJx6fE20TPgKtL1Sxpi4MTQxiJaxac6yGpSwDiMnBoAmg429Du9leRTndyMDBoDYrAUY3b9Og7-pdGD_GcR0M5DYp0Qb"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"notification\": {\r\n        \"title\": \"إشعار جديد\",\r\n        \"body\": \"اهلاً بكم في تطبيق البيت\"\r\n    },\r\n    \"to\": \"topics/allUsers\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fcm.googleapis.com/fcm/send",
+							"protocol": "https",
+							"host": [
+								"fcm",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"fcm",
+								"send"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "notifications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{clienttoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/client/notifications?get",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"client",
+								"notifications"
+							],
+							"query": [
+								{
+									"key": "get",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "this api folder for client"
+		},
+		{
+			"name": "suppliers",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userlogin\": \"mostafa@gmail.com\",\r\n    \"password\": \"mostafabriek\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}auth/client/login.php",
+							"host": [
+								"{{collectionSchemaUrl}}auth"
+							],
+							"path": [
+								"client",
+								"login.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"namear\": \"mostafa@gmail.com\",\r\n    \"nameen\": \"mostafabriek\",\r\n    \"discriptionar\": \"mostafabriek\",\r\n    \"discriptionen\": \"mostafabriek\",\r\n    \"categoryid\": 1 ,\r\n    \"subcategoryid\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}inputs/addProduct.php",
+							"host": [
+								"{{collectionSchemaUrl}}inputs"
+							],
+							"path": [
+								"addProduct.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"namear\": \"mostafa@gmail.com\",\r\n    \"nameen\": \"mostafabriek\",\r\n    \"discriptionar\": \"mostafabriek\",\r\n    \"discriptionen\": \"mostafabriek\",\r\n    \"categoryid\" : 1 ,\r\n    \"subcategoryid\" : 1 ,\r\n    \"price\" : 500\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{collectionSchemaUrl}}inputs/addProduct.php",
+							"host": [
+								"{{collectionSchemaUrl}}inputs"
+							],
+							"path": [
+								"addProduct.php"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "this api folder for suppliers"
+		},
+		{
+			"name": "notifications",
+			"item": [
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startDays\":1,\r\n    \"daysCount\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/getAll",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"getAll"
+							]
+						},
+						"description": "gett all notifications, \r\nif the body is empty , it gets all notifications literally.\r\nbut if the body has fields \"startDays\" & \"daysCount\" :\r\nstartDays (number):\r\n\r\nThe number of days to go back from today to define the end of the date range.\r\nIf 0, the end date is the start of today.\r\nExamples:\r\n0 means the end date is today.\r\n3 means the end date is 3 days ago.\r\ndaysCount (number):\r\n\r\nThe number of days before the end date to define the start of the date range.\r\nExamples:\r\n7 means the start date is 7 days before the end date.\r\n30 means the start date is 30 days before the end date."
+					},
+					"response": [
+						{
+							"name": "GET ALL",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"startDays\":0,\r\n    \"daysCount\":2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/getAll",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"getAll"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2249"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8c9-Mv5l0ezYBcPvVnGbPi3YiXyWJLs\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 May 2024 21:31:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": [\n        {\n            \"_id\": \"6659f8d1f1c38a6158a09489\",\n            \"text\": \"test notification\",\n            \"createdAt\": \"2024-05-31T16:20:33.559Z\",\n            \"updatedAt\": \"2024-05-31T16:20:33.559Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6659f8efca70b7016d506b7b\",\n            \"text\": \"test notification\",\n            \"createdAt\": \"2024-05-31T16:21:03.420Z\",\n            \"updatedAt\": \"2024-05-31T16:21:03.420Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6659f9d952736a5e188a8007\",\n            \"text\": \"test notification\",\n            \"createdAt\": \"2024-05-31T16:24:57.103Z\",\n            \"updatedAt\": \"2024-05-31T16:24:57.103Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6659fa566f7c2fc3f97b21a9\",\n            \"text\": \"test notification\",\n            \"createdAt\": \"2024-05-31T16:27:02.153Z\",\n            \"updatedAt\": \"2024-05-31T16:27:02.153Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6659fa982a9579f8413c3f1d\",\n            \"text\": \"test notification\",\n            \"createdAt\": \"2024-05-31T16:28:08.966Z\",\n            \"updatedAt\": \"2024-05-31T16:28:08.966Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6659faa42ed8f9b140762dfb\",\n            \"text\": \"test notification\",\n            \"createdAt\": \"2024-05-31T16:28:20.027Z\",\n            \"updatedAt\": \"2024-05-31T16:28:20.027Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6659fab49cb7f2472c2617db\",\n            \"text\": \"test notification\",\n            \"createdAt\": \"2024-05-31T16:28:36.402Z\",\n            \"updatedAt\": \"2024-05-31T16:28:36.402Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6659fac1de3b145fd484fadf\",\n            \"text\": \"test notification\",\n            \"createdAt\": \"2024-05-31T16:28:49.186Z\",\n            \"updatedAt\": \"2024-05-31T16:28:49.186Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6659fb24492f199a7df52567\",\n            \"text\": \"test notification\",\n            \"createdAt\": \"2024-05-31T16:30:28.853Z\",\n            \"updatedAt\": \"2024-05-31T16:30:28.853Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6659fb5fa2c4e1f77f4fbd67\",\n            \"text\": \"test notification\",\n            \"createdAt\": \"2024-05-31T16:31:27.397Z\",\n            \"updatedAt\": \"2024-05-31T16:31:27.397Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6659fb7ec2f7a71fb92a5c79\",\n            \"text\": \"test notification\",\n            \"createdAt\": \"2024-05-31T16:31:58.651Z\",\n            \"updatedAt\": \"2024-05-31T16:31:58.651Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6659fb977df66005807e6351\",\n            \"text\": \"test notification\",\n            \"createdAt\": \"2024-05-31T16:32:23.815Z\",\n            \"updatedAt\": \"2024-05-31T16:32:23.815Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6659fbabf525c1f74ba2c954\",\n            \"text\": \"test notification\",\n            \"createdAt\": \"2024-05-31T16:32:43.544Z\",\n            \"updatedAt\": \"2024-05-31T16:32:43.544Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6659fbc50ef6344e4ae5332a\",\n            \"text\": \"test notification\",\n            \"createdAt\": \"2024-05-31T16:33:09.088Z\",\n            \"updatedAt\": \"2024-05-31T16:33:09.088Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6659fc02ab43f9e631fe3c2d\",\n            \"text\": \"test notification\",\n            \"createdAt\": \"2024-05-31T16:34:10.775Z\",\n            \"updatedAt\": \"2024-05-31T16:34:10.775Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\":\"test notification\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"create"
+							]
+						},
+						"description": "the body must have the \"text\" field of the notification"
+					},
+					"response": [
+						{
+							"name": "CREATE",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"text\":\"test notification\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/create",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "234"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ea-IV10ZH3hbbbT1gYl/fRfQrcJPOM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 May 2024 21:25:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"created\",\n    \"data\": {\n        \"text\": \"test notification\",\n        \"_id\": \"665a405f535f3bb4023d4302\",\n        \"createdAt\": \"2024-06-01T00:25:51.514Z\",\n        \"updatedAt\": \"2024-06-01T00:25:51.514Z\",\n        \"__v\": 0\n    },\n    \"createdAt\": \"2024-06-01T00:25:51.514Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GET ONE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\":\"6659f8d1f1c38a6158a09489\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/getOne",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"getOne"
+							]
+						},
+						"description": "body must have \"_id\" field"
+					},
+					"response": [
+						{
+							"name": "GET ONE",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\":\"6659f8d1f1c38a6158a09489\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/getOne",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"getOne"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "175"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"af-ijxKPQF4angSkajRCm8ioLo2pP0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 May 2024 21:33:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"_id\": \"6659f8d1f1c38a6158a09489\",\n        \"text\": \"test notification\",\n        \"createdAt\": \"2024-05-31T16:20:33.559Z\",\n        \"updatedAt\": \"2024-05-31T16:20:33.559Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "UPDATE",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\":\"6659f8d1f1c38a6158a09489\",\r\n    \"text\":\"updated text\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"update"
+							]
+						},
+						"description": "body must contain: \r\n\"_id\" of the notification.\r\n\"text\" of the updated notification"
+					},
+					"response": [
+						{
+							"name": "UPDATE",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\":\"6659f8d1f1c38a6158a09489\",\r\n    \"text\":\"updated text\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/update",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"update"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "190"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"be-prUVmko6zVeOUhcguD3owMxFOeI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 May 2024 21:34:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"updated\",\n    \"data\": {\n        \"_id\": \"6659f8d1f1c38a6158a09489\",\n        \"text\": \"updated text\",\n        \"createdAt\": \"2024-05-31T16:20:33.559Z\",\n        \"updatedAt\": \"2024-05-31T21:34:45.654Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\":\"6659f8d1f1c38a6158a09489\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"delete"
+							]
+						},
+						"description": "body must contain: \r\n\"_id\" of the notification that you want to delete"
+					},
+					"response": [
+						{
+							"name": "DELETE",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\":\"6659f8d1f1c38a6158a09489\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/delete",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"delete"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-B6HUcRyGxmwcqHb3Qo6vhP1PrT8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 May 2024 21:35:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"deleted\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "https://albayt.site/api",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://albayt.site/api",
+					"protocol": "https",
+					"host": [
+						"albayt",
+						"site"
+					],
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "app versions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTMsImZpcnN0bmFtZSI6Ik1vc3RhZmEiLCJsYXN0bmFtZSI6ImJyaWVrIiwidXNlcm5hbWUiOiIxNzA5MDY0MTYzMjU5NTMzNzE2IiwicGhvbmUiOiIwMTExMTE3ODI4OSIsImVtYWlsIjoibW9zdGFmYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiIsImltYWdlIjoiZGVmYXVsdC5qcGciLCJ0b2tlbiI6IiIsInRva2VuX2V4IjpudWxsLCJudW1iZXJfb2Zfb3JkZXJzIjowLCJmaXJlYmFzZVRva2VuIjoiIn0.R3vzGLArmOoYMidinZjkuNv2Gh7MV5tSgHdkkT2KW94",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{collectionSchemaUrl}}get/appversions.php",
+					"host": [
+						"{{collectionSchemaUrl}}get"
+					],
+					"path": [
+						"appversions.php"
+					],
+					"query": [
+						{
+							"key": "subcategoryid",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "supplierid",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "collectionSchemaUrl",
+			"value": "https://albayt.site/api/"
+		},
+		{
+			"key": "clienttoken",
+			"value": "\"\""
+		},
+		{
+			"key": "token",
+			"value": "\"\""
+		}
+	]
+}
