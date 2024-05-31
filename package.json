@@ -1,0 +1,21 @@
+{
+  "name": "notifications",
+  "version": "1.0.0",
+  "description": "notification system for albayt app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "author": "AbdulRahman Sharief",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "moment-timezone": "^0.5.45",
+    "mongoose": "^8.4.1",
+    "nodemon": "^3.1.2"
+  }
+}
